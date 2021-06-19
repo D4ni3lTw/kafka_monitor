@@ -53,17 +53,4 @@ services:
     links:
       - prometheus
     volumes:
-      - "graf-db:/var/lib/grafana"
-
-  graf-db:
-    container_name: grafanaDB
-    command:
-      - cat
-    image: infinityworks/graf-db:08
-    links:
-      - prometheus
-    volumes:
-      - "graf-db:/var/lib/grafana/"
-
-volumes:
-  graf-db:
+      - ./mount/grafana/lib:/var/lib/grafana
