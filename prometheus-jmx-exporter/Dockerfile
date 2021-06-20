@@ -1,4 +1,4 @@
-FROM java:9
+FROM java:8
 
 RUN mkdir /opt/jmx_prometheus_httpserver && wget 'https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_httpserver/0.15.0/jmx_prometheus_httpserver-0.15.0-jar-with-dependencies.jar' -O /opt/jmx_prometheus_httpserver/jmx_prometheus_httpserver.jar
 
