@@ -18,7 +18,8 @@ services:
     environment:
       - KAFKA_ADVERTISED_HOST_NAME=127.0.0.1
       - KAFKA_ADVERTISED_PORT=9092
-      - KAFKA_CREATE_TOPICS=customer:1:1,audit:1:1
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CREATE_TOPICS=customer:3:1,audit:3:1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - JMX_PORT=9999
 
@@ -34,6 +35,15 @@ services:
       - JMX_HOST=kafka
       - HTTP_PORT=8080
       - JMX_EXPORTER_CONFIG_FILE=kafka.yml
+
+  kafka-exporter:
+    image: danielqsj/kafka-exporter
+    container_name: kafka-exporter
+    ports:
+      - 9308:9308
+    links:
+      - kafka
+    command: --kafka.server=kafka:9092
 
   prometheus:
     container_name: prometheus
